@@ -83,7 +83,10 @@ export class AddComponent implements OnInit {
     };
     console.log(`Name : ${this.employeeObj} Age : ${this.age} Gender : ${this.gender}`);
     console.log(`Salary: ${this.salary} Location ${this.location}`);
-
+    this.http.post('http://localhost:3000/company/', this.employeeObj).subscribe(res => {
+      alert('Added!');
+      this.router.navigate(['/list']);
+    });
   }
 
 }

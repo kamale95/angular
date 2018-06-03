@@ -1,0 +1,20 @@
+{
+  "company": [
+    {
+      "name": "ArunRajachandar",
+      "age": "18",
+      "gender": "male",
+      "salary": "250001",
+      "location": "Bangalore",
+      "id": 2
+    },
+    {
+      "name": "Kamalesh",
+      "age": "19",
+      "gender": "male",
+      "salary": "25000",
+      "location": "Coimbatore",
+      "id": 3
+    }
+  ]
+}
