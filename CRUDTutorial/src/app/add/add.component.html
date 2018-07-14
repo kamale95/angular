@@ -1,167 +1,167 @@
 <form [formGroup]="employeeDetailsForm" (ngSubmit)="saveEmployeeDetails(employeeDetailsForm.value)">
 
-  <!-- name -->
-  <div class="form-group row">
-    <label for="name" class="col-sm-2 col-form-label">Name</label>
-    <div class="col-lg-6">
-      <input type="text" class="form-control" [ngClass]="{'is-invalid': employeeDetailsForm.controls['name'].invalid
+    <!-- name -->
+    <div class="form-group row">
+        <label for="name" class="col-sm-2 col-form-label">Name</label>
+        <div class="col-lg-6">
+            <input type="text" class="form-control" [ngClass]="{'is-invalid': employeeDetailsForm.controls['name'].invalid
   && employeeDetailsForm.controls['name'].touched,
   'is-valid': employeeDetailsForm.controls['name'].valid
   && employeeDetailsForm.controls['name'].touched}" id="name" name="name" formControlName="name">
-    </div>
+        </div>
 
-    <div class="alert-danger p-2 rounded ml-lg-3 mt-lg-0 m-3" *ngIf="employeeDetailsForm.controls['name'].hasError('required')
+        <div class="alert-danger p-2 rounded ml-lg-3 mt-lg-0 m-3" *ngIf="employeeDetailsForm.controls['name'].hasError('required')
   &&(employeeDetailsForm.controls['name'].dirty || employeeDetailsForm.controls['name'].touched)">
-      Name field is required
-    </div>
+            Name field is required
+        </div>
 
-    <div class="alert-danger p-2 rounded ml-lg-3 mt-lg-0 m-3" *ngIf="employeeDetailsForm.controls['name'].hasError('maxlength')
+        <div class="alert-danger p-2 rounded ml-lg-3 mt-lg-0 m-3" *ngIf="employeeDetailsForm.controls['name'].hasError('maxlength')
   &&(employeeDetailsForm.controls['name'].dirty || employeeDetailsForm.controls['name'].touched)">
-      Name must be below 15 Characters
-    </div>
+            Name must be below 15 Characters
+        </div>
 
-    <div class="alert-danger p-2 rounded ml-lg-3 mt-lg-0 m-3" *ngIf="employeeDetailsForm.controls['name'].hasError('minlength')
+        <div class="alert-danger p-2 rounded ml-lg-3 mt-lg-0 m-3" *ngIf="employeeDetailsForm.controls['name'].hasError('minlength')
   &&(employeeDetailsForm.controls['name'].dirty || employeeDetailsForm.controls['name'].touched)">
-      Name must be above 4 Characters
-    </div>
+            Name must be above 4 Characters
+        </div>
 
-    <div class="alert-danger p-2 rounded ml-lg-3 mt-lg-0 m-3" *ngIf="employeeDetailsForm.controls['name'].hasError('pattern')
+        <div class="alert-danger p-2 rounded ml-lg-3 mt-lg-0 m-3" *ngIf="employeeDetailsForm.controls['name'].hasError('pattern')
   && !(employeeDetailsForm.controls['name'].hasError('minlength') || employeeDetailsForm.controls['name'].hasError('maxlength'))&&(employeeDetailsForm.controls['name'].dirty
    || employeeDetailsForm.controls['name'].touched)">
-      Please enter the valid Name
-    </div>
+            Please enter the valid Name
+        </div>
 
-    <div *ngIf="employeeDetailsForm.controls['name'].valid
+        <div *ngIf="employeeDetailsForm.controls['name'].valid
   &&(employeeDetailsForm.controls['name'].dirty || employeeDetailsForm.controls['name'].touched)" class="alert-success p-2 rounded ml-lg-3 mt-lg-0 m-3">
-      Looks Good!
+            Looks Good!
+        </div>
     </div>
-  </div>
 
 
 
-  <!-- age -->
+    <!-- age -->
 
-  <div class="form-group row">
-    <label for="age" class="col-sm-2 col-form-label">Age</label>
-    <div class="col-lg-6">
-      <input type="text" [ngClass]="{'is-invalid': employeeDetailsForm.controls['age'].invalid
+    <div class="form-group row">
+        <label for="age" class="col-sm-2 col-form-label">Age</label>
+        <div class="col-lg-6">
+            <input type="text" [ngClass]="{'is-invalid': employeeDetailsForm.controls['age'].invalid
   && (employeeDetailsForm.controls['age'].touched || employeeDetailsForm.controls['age'].dirty),
   
   'is-valid': employeeDetailsForm.controls['age'].valid
   && (employeeDetailsForm.controls['age'].touched || employeeDetailsForm.controls['age'].dirty)}" class="form-control col-3"
-        id="age" formControlName="age">
+                id="age" formControlName="age">
 
-    </div>
+        </div>
 
-    <div class="alert-danger p-2 rounded ml-lg-3 mt-lg-0 m-3" *ngIf="employeeDetailsForm.controls['age'].hasError('required')
+        <div class="alert-danger p-2 rounded ml-lg-3 mt-lg-0 m-3" *ngIf="employeeDetailsForm.controls['age'].hasError('required')
   &&(employeeDetailsForm.controls['age'].dirty || employeeDetailsForm.controls['age'].touched)">
-      Age field is required
-    </div>
+            Age field is required
+        </div>
 
-    <div class="alert-danger p-2 rounded ml-lg-3 mt-lg-0 m-3" *ngIf="employeeDetailsForm.controls['age'].hasError('pattern')
+        <div class="alert-danger p-2 rounded ml-lg-3 mt-lg-0 m-3" *ngIf="employeeDetailsForm.controls['age'].hasError('pattern')
   &&(employeeDetailsForm.controls['age'].dirty || employeeDetailsForm.controls['age'].touched)">
 
-      Invalid input for Age
+            Invalid input for Age
 
-    </div>
+        </div>
 
-    <div class="alert-danger p-2 rounded ml-lg-3 mt-lg-0 m-3" *ngIf="employeeDetailsForm.controls['age'].hasError('min')
+        <div class="alert-danger p-2 rounded ml-lg-3 mt-lg-0 m-3" *ngIf="employeeDetailsForm.controls['age'].hasError('min')
   &&(employeeDetailsForm.controls['age'].dirty || employeeDetailsForm.controls['age'].touched)">
-      Age must be between 18 and 65
-    </div>
+            Age must be between 18 and 65
+        </div>
 
-    <div class="alert-danger p-2 rounded ml-lg-3 mt-lg-0 m-3" *ngIf="employeeDetailsForm.controls['age'].hasError('max')
+        <div class="alert-danger p-2 rounded ml-lg-3 mt-lg-0 m-3" *ngIf="employeeDetailsForm.controls['age'].hasError('max')
   &&(employeeDetailsForm.controls['age'].dirty || employeeDetailsForm.controls['age'].touched)">
-      Age must be between 18 and 65
-    </div>
+            Age must be between 18 and 65
+        </div>
 
-    <div *ngIf="employeeDetailsForm.controls['age'].valid
+        <div *ngIf="employeeDetailsForm.controls['age'].valid
   &&(employeeDetailsForm.controls['age'].dirty || employeeDetailsForm.controls['age'].touched)" class="alert-success p-2 rounded ml-lg-3 mt-lg-0 m-3">
-      Looks Good!
+            Looks Good!
+        </div>
     </div>
-  </div>
 
 
 
-  <!-- Gender -->
-  <fieldset class="form-group">
-    <div class="row">
-      <legend class="col-form-label col-sm-2 pt-0">Gender</legend>
-      <div class="col-lg-6">
-        <div class="custom-control custom-radio">
-          <input class="custom-control-input" type="radio" name="gender" id="male" value="male" formControlName="gender">
-          <label class="custom-control-label" for="male">
-            Male
-          </label>
-        </div>
-        <div class="custom-control custom-radio">
-          <input class="custom-control-input" type="radio" name="gender" id="female" value="female" formControlName="gender">
-          <label class="custom-control-label" for="female">
-            Female
-          </label>
-        </div>
-      </div>
-      <div class="alert-danger p-2 rounded ml-lg-3 mt-lg-0 m-3" *ngIf="employeeDetailsForm.controls['gender'].hasError('required')
+    <!-- Gender -->
+    <fieldset class="form-group">
+        <div class="row">
+            <legend class="col-form-label col-sm-2 pt-0">Gender</legend>
+            <div class="col-lg-6">
+                <div class="custom-control custom-radio">
+                    <input class="custom-control-input" type="radio" name="gender" id="male" value="male" formControlName="gender">
+                    <label class="custom-control-label" for="male">
+                        Male
+                    </label>
+                </div>
+                <div class="custom-control custom-radio">
+                    <input class="custom-control-input" type="radio" name="gender" id="female" value="female" formControlName="gender">
+                    <label class="custom-control-label" for="female">
+                        Female
+                    </label>
+                </div>
+            </div>
+            <div class="alert-danger p-2 rounded ml-lg-3 mt-lg-0 m-3" *ngIf="employeeDetailsForm.controls['gender'].hasError('required')
       &&(employeeDetailsForm.controls['gender'].dirty || employeeDetailsForm.controls['gender'].touched)">
-        Select a Gender
-      </div>
+                Select a Gender
+            </div>
 
-      <div *ngIf="employeeDetailsForm.controls['gender'].valid
+            <div *ngIf="employeeDetailsForm.controls['gender'].valid
   &&(employeeDetailsForm.controls['gender'].dirty || employeeDetailsForm.controls['gender'].touched)" class="alert-success p-2 rounded ml-lg-3 mt-lg-0 m-3">
-        Looks Good!
-      </div>
-    </div>
-  </fieldset>
+                Looks Good!
+            </div>
+        </div>
+    </fieldset>
 
 
 
-  <!-- Salary -->
-  <div class="form-group row">
-    <label for="salary" class="col-sm-2 col-form-label">Salary</label>
-    <div class="col-lg-6">
-      <input type="text" class="form-control" [ngClass]="{'is-invalid': employeeDetailsForm.controls['salary'].invalid
+    <!-- Salary -->
+    <div class="form-group row">
+        <label for="salary" class="col-sm-2 col-form-label">Salary</label>
+        <div class="col-lg-6">
+            <input type="text" class="form-control" [ngClass]="{'is-invalid': employeeDetailsForm.controls['salary'].invalid
   && (employeeDetailsForm.controls['salary'].touched || employeeDetailsForm.controls['salary'].dirty),
   
   'is-valid': employeeDetailsForm.controls['salary'].valid
   && (employeeDetailsForm.controls['salary'].touched || employeeDetailsForm.controls['salary'].dirty)}" id="salary" formControlName="salary">
-    </div>
+        </div>
 
-    <div class="alert-danger p-2 rounded ml-lg-3 mt-lg-0 m-3" *ngIf="employeeDetailsForm.controls['salary'].hasError('required')
+        <div class="alert-danger p-2 rounded ml-lg-3 mt-lg-0 m-3" *ngIf="employeeDetailsForm.controls['salary'].hasError('required')
   &&(employeeDetailsForm.controls['salary'].dirty || employeeDetailsForm.controls['salary'].touched)">
 
-      Salary field is required
-    </div>
-    <div class="alert-danger p-2 rounded ml-lg-3 mt-lg-0 m-3" *ngIf="employeeDetailsForm.controls['salary'].hasError('pattern')
+            Salary field is required
+        </div>
+        <div class="alert-danger p-2 rounded ml-lg-3 mt-lg-0 m-3" *ngIf="employeeDetailsForm.controls['salary'].hasError('pattern')
   &&(employeeDetailsForm.controls['salary'].dirty || employeeDetailsForm.controls['salary'].touched)">
-      Please enter the valid Salary
-    </div>
-    <div *ngIf="employeeDetailsForm.controls['salary'].valid
+            Please enter the valid Salary
+        </div>
+        <div *ngIf="employeeDetailsForm.controls['salary'].valid
     &&(employeeDetailsForm.controls['salary'].dirty || employeeDetailsForm.controls['salary'].touched)" class="alert-success p-2 rounded ml-lg-3 mt-lg-0 m-3">
-      Looks Good!
+            Looks Good!
+        </div>
     </div>
-  </div>
 
 
-  <!-- Location -->
-  <div class="form-group row">
-    <label for="location" class="col-sm-2 col-form-label">Location</label>
-    <div class="col-lg-6">
-      <select id="location" class="form-control" [ngClass]="{'is-invalid': employeeDetailsForm.controls['location'].invalid
+    <!-- Location -->
+    <div class="form-group row">
+        <label for="location" class="col-sm-2 col-form-label">Location</label>
+        <div class="col-lg-6">
+            <select id="location" class="form-control" [ngClass]="{'is-invalid': employeeDetailsForm.controls['location'].invalid
       && employeeDetailsForm.controls['location'].touched,
       'is-valid': employeeDetailsForm.controls['location'].valid
       && employeeDetailsForm.controls['location'].touched}" formControlName="location">
-        <option selected hidden disabled>Choose..</option>
-        <option *ngFor="let location of locationArray" [ngValue]="location">{{location}}</option>
-      </select>
-    </div>
-    <div class="alert-danger p-2 rounded ml-lg-3 mt-lg-0 m-3" *ngIf="employeeDetailsForm.controls['location'].hasError('required')
+                <option selected hidden disabled>Choose..</option>
+                <option *ngFor="let location of locationArray" [ngValue]="location">{{location}}</option>
+            </select>
+        </div>
+        <div class="alert-danger p-2 rounded ml-lg-3 mt-lg-0 m-3" *ngIf="employeeDetailsForm.controls['location'].hasError('required')
   &&(employeeDetailsForm.controls['location'].dirty || employeeDetailsForm.controls['location'].touched)">
-      Please choose the location
-    </div>
-    <div *ngIf="employeeDetailsForm.controls['location'].valid
+            Please choose the location
+        </div>
+        <div *ngIf="employeeDetailsForm.controls['location'].valid
     &&(employeeDetailsForm.controls['location'].dirty || employeeDetailsForm.controls['location'].touched)" class="alert-success p-2 rounded ml-lg-3 mt-lg-0 m-3">
-      Looks Good!
+            Looks Good!
+        </div>
     </div>
-  </div>
-  <button type="submit" class="btn btn-danger" [disabled]="employeeDetailsForm.invalid">Submit</button>
+    <button type="submit" class="btn btn-danger" [disabled]="employeeDetailsForm.invalid">Submit</button>
 </form>
