@@ -1,5 +1,6 @@
 .fa-edit:hover {
     color: yellowgreen;
+    cursor: pointer;
 }
 
 .fa-edit:active {
@@ -8,6 +9,7 @@
 
 .fa-trash-alt:hover {
     color: orangered;
+    cursor: pointer
 }
 
 .fa-trash-alt:active {
