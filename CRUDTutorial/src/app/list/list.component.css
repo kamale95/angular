@@ -1,0 +1,15 @@
+.fa-edit:hover {
+    color: yellowgreen;
+}
+
+.fa-edit:active {
+    color: green;
+}
+
+.fa-trash-alt:hover {
+    color: orangered;
+}
+
+.fa-trash-alt:active {
+    color: red;
+}

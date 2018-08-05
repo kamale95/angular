@@ -19,15 +19,11 @@
       <td class="text-center"> {{item.gender}} </td>
       <td class="text-center"> {{item.salary}} </td>
       <td class="text-center"> {{item.location}} </td>
-      <td>
-        <div class="row">
-          <button class="btn btn-danger mx-auto" (click)="deleteEmployeeDetails(item.id)">Delete</button>
-        </div>
+      <td class="text-center">
+        <i class="fas fa-trash-alt" (click)="deleteEmployeeDetails(item.id)"></i>
       </td>
-      <td>
-        <div class="row">
-          <button class="btn btn-warning mx-auto" [routerLink]="['/update', item.id]">Edit</button>
-        </div>
+      <td class="text-center">
+        <i class="fas fa-edit" [routerLink]="['/update', item.id]"></i>
       </td>
     </tr>
   </tbody>
