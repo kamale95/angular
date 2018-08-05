@@ -3,15 +3,15 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient, HttpHeaderResponse } from '@angular/common/http';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ListService } from '../list.service';
+import { EmployeeModel } from '../model/employeeModel';
 
 @Component({
     selector: 'app-update',
     templateUrl: './update.component.html'
 })
 export class UpdateComponent implements OnInit {
-    dataObj: any;
-    employeeObj: Object = {};
-    listObj: any;
+    employeeObj: EmployeeModel;
+    employeeList: EmployeeModel[];
     id: number;
     name: string;
     age: number;
@@ -24,49 +24,77 @@ export class UpdateComponent implements OnInit {
     locationArray: string[] = ['Chennai', 'Delhi', 'Bombay', 'Kolkata', 'Bangalore', 'Coimbatore'];
 
     // Initializes the FormBuilder service
-    constructor(private fb: FormBuilder, private http: HttpClient,
-        private route: ActivatedRoute, private router: Router,
-        private listService: ListService) {
-        this.generateEmployeeDetailsForm();
-    }
+    constructor(
+        private fb: FormBuilder,
+        private http: HttpClient,
+        private activatedRoute: ActivatedRoute, private router: Router,
+        private listService: ListService
+    ) { }
 
     ngOnInit() {
-        this.updateForm();
+        this.generateEmployeeDetailsForm();
+        this.activatedRoute.params.subscribe(this.parseRootParams.bind(this));
     }
 
-    updateForm() {
-        this.route.params.subscribe(params => {
-            this.id = +params['id'];
+    /**
+     *  Assigns ID from the URL and calls fetchListMethod
+     * @param params contains data from the url
+     */
+    parseRootParams(params: number) {
+        this.id = +params['id'];
+        this.fetchList();
+    }
+
+    /**
+     * Issues api call to the service
+     */
+    fetchList() {
+        this.listService.getList().subscribe(this.handleList.bind(this));
+    }
+
+    /**
+     * Handles response obtained from the api
+     * @param response response from the api
+     */
+    handleList(response: EmployeeModel[]) {
+        if (response && response.length > 0) {
+            this.employeeList = response;
+            this.extractEmployeeFromID();
+        }
+    }
+
+    /**
+     * Fetches Data of Employee from the list based on ID
+     */
+    extractEmployeeFromID() {
+        for (let i = 0; i < this.employeeList.length; i++) {
+            if (parseInt(this.employeeList[i].id, 10) === this.id) {
+                this.employeeObj = this.employeeList[i];
+                break;
+            }
+        }
+        this.prePopulateForm();
+    }
+
+    /**
+     *  Prepulates the form values based on Employee ID
+     */
+    prePopulateForm() {
+        this.employeeDetailsForm.patchValue({
+            'name': this.employeeObj.name,
+            'age': this.employeeObj.age,
+            'gender': this.employeeObj.gender,
+            'salary': this.employeeObj.salary,
+            'location': this.employeeObj.location
         });
-
-        this.listService.getList()
-            .subscribe(arg => {
-                this.listObj = arg;
-
-                for (let i = 0; i < this.listObj.length; i++) {
-                    // tslint:disable-next-line:radix
-                    if (parseInt(this.listObj[i].id) === this.id) {
-                        this.dataObj = this.listObj[i];
-                        break;
-                    }
-                }
-                this.employeeDetailsForm.patchValue({
-                    'name': this.dataObj.name,
-                    'age': this.dataObj.age,
-                    'gender': this.dataObj.gender,
-                    'salary': this.dataObj.salary,
-                    'location': this.dataObj.location
-                });
-            });
     }
 
-    // Generates the Employee Details Form
+    /**
+     * Generates Employee Details Reactive Form and Adds Validation Configurations to it
+     */
     generateEmployeeDetailsForm() {
-
         this.employeeDetailsForm =
             this.fb.group({
-                // tslint:disable-next-line:max-line-length
-
                 'name': [null,
                     Validators.compose([Validators.required,
                     Validators.maxLength(15),
@@ -91,21 +119,27 @@ export class UpdateComponent implements OnInit {
             });
     }
 
-
-
-    // Saves the Employee Details to our properties defined in this form after clicking the Submit Button and logs them to the console
-
+    /**
+     *  Saves the Employee Details to our properties defined in this form after clicking the Submit Button
+     * @param form contains form data
+     */
     updateEmployeeDetails(form: any) {
         this.employeeObj = {
+            'id': null,
             'name': form.name,
             'age': form.age,
             'gender': form.gender,
             'salary': form.salary,
             'location': form.location
         };
-        this.http.put('http://localhost:3000/company/' + this.id, this.employeeObj).subscribe(res => {
-            alert('Updated!');
-            this.router.navigate(['/list']);
-        });
+        this.listService.putList(this.id, this.employeeObj).subscribe(this.returnToList.bind(this));
+    }
+
+    /**
+     * Alerts the user and returns back to the list
+     */
+    returnToList() {
+        alert('Updated!');
+        this.router.navigate(['/list']);
     }
 }

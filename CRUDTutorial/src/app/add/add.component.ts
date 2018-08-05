@@ -3,13 +3,14 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient, HttpHeaderResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { EmployeeModel } from '../model/employeeModel';
+import { ListService } from '../list.service';
 
 @Component({
     selector: 'app-add',
     templateUrl: './add.component.html'
 })
 export class AddComponent implements OnInit {
-    employeeObj: EmployeeModel
+    employeeObj: EmployeeModel;
     employeeDetailsForm: FormGroup;
 
     // For populating dropdown with pre defined location strings from an array
@@ -20,7 +21,12 @@ export class AddComponent implements OnInit {
      * @param http Injects HttpClient Service
      * @param router Injects Router Service
      */
-    constructor(private fb: FormBuilder, private http: HttpClient, private router: Router) { }
+    constructor(
+        private fb: FormBuilder,
+        private http: HttpClient,
+        private router: Router,
+        private listService: ListService
+    ) { }
 
     /**
      * On initialization, it calls a function to generate Employee Details Form
@@ -65,16 +71,21 @@ export class AddComponent implements OnInit {
      */
     saveEmployeeDetails(form: any) {
         this.employeeObj = {
+            'id': null,
             'name': form.name,
             'age': form.age,
             'gender': form.gender,
             'salary': form.salary,
             'location': form.location
         };
+        this.listService.postList(this.employeeObj).subscribe(this.returnToList.bind(this));
+    }
 
-        this.http.post('http://localhost:3000/company/', this.employeeObj).subscribe(res => {
-            alert('Added!');
-            this.router.navigate(['/list']);
-        });
+    /**
+     * Shows Added! alert to user and returns back to list
+     */
+    returnToList() {
+        alert('Added!');
+        this.router.navigate(['/list']);
     }
 }
