@@ -1,8 +1,8 @@
 export interface EmployeeModel {
-    id: string;
-    name: string;
     age: number;
     gender: string;
-    salary: number;
+    id: string;
     location: string;
+    name: string;
+    salary: number;
 }
